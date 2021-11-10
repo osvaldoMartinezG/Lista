@@ -1,0 +1,98 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package tarealista;
+
+import java.util.Scanner;
+
+/**
+ *
+ * @author locop
+ */
+public class Tarealista {
+static int opt=0;
+static Nodo temp=null;
+        static Nodo inicio= null;
+
+    static class Nodo{
+        String Nombre;
+        Nodo sig;
+        private String name;
+        
+    }
+    
+     public static void mostrar(String name, Nodo next ){ // METODO ENCARGADO DE MOSTRAR LOS DATOS DENTRO DE LISTA, LINEA DE CODIGO DADA POR EL PROFESOR 
+        System.out.println(name+" ");
+        while(inicio != null){                           
+            System.out.print(inicio.Nombre + " ");
+            inicio = inicio.sig;
+        }
+        
+    }
+    public  static void add(String name){
+        Scanner sc= new Scanner(System.in);  
+        //PARA ESTE IF TAMBIEN SE NECESITO DE LAS LINEAS DE CODIGO PARA LA DECLARACION DE VARIABLES NODO Y SIG USADAS EN EL CODIGO DEL PROFESOR
+       if(inicio==null){   //USAMOS UN IF PARA PREGUNTAR SI LA LISTA ESTA VACIA O NO PARA PODER DAR UN DATO INICIAL
+           inicio = new Nodo(); 
+           System.out.println("ingresa dato"); // EN ESTE CASO ESTAMOS PIDIENDO QUE EL USUARIO LLENE EL ESPACIO DEL NODO
+            String t = sc.nextLine();
+        inicio.Nombre=t;
+        inicio.sig=null;  
+        
+       }else{ // EN CASO DE EXISTIR UN DATO YA EN LISTA ESTE ELSE SE ENCARGA DE LLENAR EL SIGUIENTE NODO EL CUAL APUNTA AL DATO INICIAL
+           temp = new Nodo(); 
+           System.out.println("ingresa dato");
+        temp.Nombre=sc.nextLine();
+        temp.sig=inicio;
+        inicio=temp; 
+       }
+        
+        
+    }
+     public static void delete(String name){
+       
+        // para eliminar un espacio se debe de tomar la posicion con el null por lo que no se puede poner un eliminar, 
+        //sino un desploazamiento de la información
+         inicio=inicio;
+         System.out.print("datos eliminados");
+         while(inicio != null){
+             if(inicio.name==name){
+                 if(inicio==inicio){
+                     inicio=inicio.sig;
+                 }
+                    
+                 
+             }
+             inicio = inicio.sig;
+         }
+     }
+     public static void main(String[] args) { //ESTE ES NUESTRO METODO PRINCIPAL DONDE LLAMAREMOS A LOS OTROS METODOS CREADOS
+                                               //DENTRO DE UN MENU HECHO POR UN SWICTH
+    do{
+    Scanner sc = new Scanner(System.in);
+            System.out.println("\n"
+                    +"1 - agregar\n"
+                    + "2 - mostrar\n"
+                    +"3- eliminar\n"
+                    + "4 - salir\n");
+             switch (opt = sc.nextInt()){
+                 case 1:
+                     add(" "); //SENTENCIA PARA MANDAR A TRAER NUESTRO METODO ENCARGADO DE AGREGAR DATOS A LA LISTA
+                 break;
+                 case 2: 
+                     if(inicio==null){  //ESTE IF ES PARA EVALUAR SI HAY DATOS EN LA LISTA
+                         System.out.print("lista vacia");
+                     }
+                   mostrar("\n ", inicio);//SENTENCIA PARA MANDAR A TRAER EL METODO MOSTRAR QUIEN VA IMPRIMIR NUESTROS DATOS EN LA LISTA
+                 break;
+                 case 3:
+                     delete("");
+                     break;
+             }
+             
+}while(opt !=4);
+}
+}
+ 
